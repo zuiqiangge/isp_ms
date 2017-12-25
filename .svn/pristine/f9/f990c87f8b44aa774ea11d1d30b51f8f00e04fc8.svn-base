@@ -1,0 +1,78 @@
+package cn.com.pengyue.web.action;
+
+import java.util.Arrays;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.com.pengyue.pojo.${pojoName};
+import cn.com.pengyue.service.I${pojoName}Service;
+
+@Controller
+public class ${pojoName}Controller {
+	
+	@javax.annotation.Resource
+	private I${pojoName}Service ${pojoNameBycamelCase}Service;
+	
+	@RequestMapping("/listAll${pojoName}")
+	public String listAll(Model model){
+		model.addAttribute("list", ${pojoNameBycamelCase}Service.listAll());
+		return "listAll${pojoName}";
+	}
+	
+	@RequestMapping("/get${pojoName}ById")
+	public String get${pojoName}ById(Integer id,Model model){
+		model.addAttribute("pojo", ${pojoNameBycamelCase}Service.get(id));
+		return "get${pojoName}ById";
+	}
+	
+	@RequestMapping("/update${pojoName}")
+	public String update${pojoName}(${pojoName} pojo){
+		${pojoNameBycamelCase}Service.update(pojo);
+		return "update${pojoName}";
+	}
+	
+	@RequestMapping("/add${pojoName}")
+	public String add${pojoName}(${pojoName} pojo){
+		${pojoNameBycamelCase}Service.save(pojo);
+		return "add${pojoName}";
+	}
+	
+	@RequestMapping("/remove${pojoName}")
+	public String remove${pojoName}(Integer[] id){
+		${pojoNameBycamelCase}Service.delete(Arrays.asList(id));
+		return "remove${pojoName}";
+	}
+	
+	
+	
+	@RequestMapping("/ajaxGet${pojoName}ById")
+	@ResponseBody
+	public Object ajaxGet${pojoName}ById(Integer id,Model model){
+		return ${pojoNameBycamelCase}Service.get(id);
+	}
+	
+	@RequestMapping("/ajaxUpdate${pojoName}")
+	@ResponseBody
+	public Object ajaxUpdate${pojoName}(${pojoName} pojo){
+		${pojoNameBycamelCase}Service.update(pojo);
+		return pojo;
+	}
+	
+	@RequestMapping("/ajaxAdd${pojoName}")
+	@ResponseBody
+	public Object ajaxAdd${pojoName}(${pojoName} pojo){
+		${pojoNameBycamelCase}Service.save(pojo);
+		return pojo;
+	}
+	
+	@RequestMapping("/ajaxRemove${pojoName}")
+	@ResponseBody
+	public Object ajaxRemove${pojoName}(Integer[] id){
+		${pojoNameBycamelCase}Service.delete(Arrays.asList(id));
+		return Arrays.asList(id);
+	}
+	
+}

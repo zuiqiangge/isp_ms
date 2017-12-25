@@ -1,0 +1,74 @@
+		 <!-- select2 -->
+		 <link href="css/select/select2.min.css" rel="stylesheet">
+        <script src="js/select/select2.full.js"></script>	
+------------------------------------------------------------------------------
+
+
+解决 bootstarp modal 里的select2 不能搜索
+
+//fix modal force focus
+$.fn.modal.Constructor.prototype.enforceFocus = function () {
+  var that = this;
+  $(document).on('focusin.modal', function (e) {
+     if ($(e.target).hasClass('select2-search__field')) {//fix 这里的class 样式 看select2 的。ps:select2 开发人员真是多变。。。低版本不是这个class 高版本就是这个了。。
+        return true;
+     }
+
+     if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
+        that.$element.focus();
+     }
+  });
+};
+
+
+---------------------------------
+select2 文本 国际化。。。。
+ 低版本(本项目不用)： * Select2 Chinese translation
+			 */
+		    $.extend($.fn.select2.defaults, {
+		        formatNoMatches: function () { return "没有找到匹配项"; },
+		        formatInputTooShort: function (input, min) { var n = min - input.length; return "请再输入" + n + "个字符";},
+		        formatInputTooLong: function (input, max) { var n = input.length - max; return "请删掉" + n + "个字符";},
+		        formatSelectionTooBig: function (limit) { return "你只能选择最多" + limit + "项"; },
+		        formatLoadMore: function (pageNumber) { return "加载结果中..."; },
+		        formatSearching: function () { return "搜索中..."; }
+		    });
+		    
+		  下面是本项目是用的高版本 代码。。。
+$("#select2_sample_modal_6").select2({
+		            placeholder: "请选择司机",
+		            language: {
+					    errorLoading: function () {
+					      return '无法载入结果。';
+					    },
+					    inputTooLong: function (args) {
+					      var overChars = args.input.length - args.maximum;
+					
+					      var message = '请删除' + overChars + '个字符';
+					
+					      return message;
+					    },
+					    inputTooShort: function (args) {
+					      var remainingChars = args.minimum - args.input.length;
+					
+					      var message = '请再输入至少' + remainingChars + '个字符';
+					
+					      return message;
+					    },
+					    loadingMore: function () {
+					      return '载入更多结果…';
+					    },
+					    maximumSelected: function (args) {
+					      var message = '最多只能选择' + args.maximum + '个项目';
+					
+					      return message;
+					    },
+					    noResults: function () {
+					      return '未找到结果';
+					    },
+					    searching: function () {
+					      return '搜索中…';
+					    }
+					 },
+		            minimumInputLength: 1,
+		            ajax:

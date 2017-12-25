@@ -1,0 +1,15 @@
+package cn.com.pengyue.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import cn.com.pengyue.pojo.${pojoName};
+import cn.com.pengyue.service.I${pojoName}Service;
+import cn.com.pengyue.dao.I${pojoName}Dao;
+
+@Service
+public class ${pojoName}Service extends BaseService<${pojoName}, Integer> implements
+		I${pojoName}Service {
+	
+	@javax.annotation.Resource
+	private I${pojoName}Dao ${pojoNameBycamelCase}Dao;
+}

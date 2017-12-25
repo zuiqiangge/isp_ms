@@ -1,0 +1,7 @@
+package cn.com.pengyue.service;
+
+import cn.com.pengyue.pojo.${pojoName};
+
+public interface I${pojoName}Service extends IBaseService<${pojoName}, Integer> {
+
+}

@@ -1,0 +1,10 @@
+package cn.com.pengyue.dao.impl;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.pengyue.pojo.${pojoName};
+
+@Repository
+public class ${pojoName}Dao extends BaseDao<${pojoName},Integer> implements cn.com.pengyue.dao.I${pojoName}Dao {
+	
+}

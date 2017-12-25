@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="destroy-center">
+        <wb-resource deploy-path="/WEB-INF/web.xml" source-path="/main/web/resources/web.xml"/>
+        <wb-resource deploy-path="/" source-path="/target/m2e-jee/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/main/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/base/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/user/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/userinfo/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/loggin/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/apply/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/dispatch/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/audit/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/destroy/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/archive/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/warehouse/java/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/file/java/src"/>
+        <property name="java-output-path" value="/destroy-center/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="isp_ms"/>
+    </wb-module>
+</project-modules>

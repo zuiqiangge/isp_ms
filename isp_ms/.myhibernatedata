@@ -1,0 +1,22 @@
+#
+#Thu Oct 15 10:54:40 CST 2015
+genBasicCompId=true
+sessionFactoryName=
+profile=
+daoSFId=
+version=3.2
+jndiPath=
+detectM2M=false
+reStrategyClass=
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+libInstallFolder=
+addLibs2Project=false
+genVersionTag=false
+sessionFactoryId=sessionFactory
+basePersistenceClass=
+reSettingsFile=
+configFile=/destroy_center/main/web/resources/applicationContext.xml
+createConfigFile=false
+addLibs2Classpath=false

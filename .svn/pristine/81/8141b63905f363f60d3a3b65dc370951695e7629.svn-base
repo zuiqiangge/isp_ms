@@ -1,0 +1,61 @@
+package cn.com.pengyue.dao.impl;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.stereotype.Repository;
+
+import cn.com.pengyue.dao.IProductDao;
+import cn.com.pengyue.pojo.SecretProduct;
+import cn.com.pengyue.util.Condition;
+@Repository
+public class ProductDao extends BaseDao<SecretProduct, Integer> implements IProductDao {
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SecretProduct> getList(Condition condition) {
+		List<SecretProduct> products = new ArrayList<SecretProduct>();
+		Session session = getHibernateTemplate().getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			StringBuffer hql = new StringBuffer("from SecretProduct ");
+			hql.append(" order by inTime desc");
+			if(condition!=null){
+				Map<String,Object> map = condition.getConditions();
+				int page =Integer.parseInt(map.get("page").toString());
+				int num = Integer.parseInt(map.get("num").toString());
+				Query query = session.createQuery(hql.toString());
+				query.setFirstResult(page);
+				query.setMaxResults(num);
+				products = query.list();
+				tx.commit();
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			tx.rollback();
+		}finally{
+			session.close();
+		}
+		return products;
+	}
+
+	@Override
+	public int getCount(Condition condition) {
+		StringBuffer hql = new StringBuffer(
+				"from SecretProduct ");
+		hql.append(" order by inTime desc");
+		return getHibernateTemplate().find(hql.toString()).size();
+	}
+
+	
+	
+	
+
+}

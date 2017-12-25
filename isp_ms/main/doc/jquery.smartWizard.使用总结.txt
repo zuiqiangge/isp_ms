@@ -1,0 +1,22 @@
+smartWizard jquery 插件  
+
+3个事件 ： 进入步骤，离开步骤 ，完成步骤
+
+
+下面离开步骤
+,onLeaveStep: function($stepA,stopObj/*{fromStep:1,toStep:2}*/){
+	            		console.log('onLeaveStep',arguments);
+	            		var method = stopObj.fromStep < stopObj.toStep ? "goForward" : "goBackward";
+	            		var invokeAjax = !!($stepA.data("invokeAjax"+stopObj.fromStep+"-"+stopObj.toStep));
+	            		if(invokeAjax){
+	            			return !!($stepA.data("invokeAjax"+stopObj.fromStep+"-"+stopObj.toStep+"_result"));
+	            		}
+	            		$(".bs-ajax-modal-sm").modal();
+	            		setTimeout(function(){ 
+	            			$stepA.data("invokeAjax"+stopObj.fromStep+"-"+stopObj.toStep+"_result",true);
+	            			 $('#wizard').smartWizard(method); 
+	            			 
+	            			 $(".bs-ajax-modal-sm").modal("hide");},5000);
+	            		$stepA.data("invokeAjax"+stopObj.fromStep+"-"+stopObj.toStep,true);
+	            		return false;//返回真 就继续下一步；
+	            	}
